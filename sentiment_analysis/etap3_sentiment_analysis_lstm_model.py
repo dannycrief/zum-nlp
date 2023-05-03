@@ -7,7 +7,7 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout
 from tensorflow.keras.utils import to_categorical
 
 # Load preprocessed data
-df = pd.read_csv('../csv_files/preprocessed_data_1504.csv')
+df = pd.read_csv('../csv_files/02_preprocessed_data/preprocessed_data.tsv', sep='\t')
 df['avg_vector'] = df['avg_vector'].apply(lambda x: ast.literal_eval(x))
 
 # Split data into training and testing sets

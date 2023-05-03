@@ -7,7 +7,7 @@ from transformers import BertTokenizer, BertForSequenceClassification, AdamW
 from transformers import get_linear_schedule_with_warmup
 
 # Load preprocessed data
-df = pd.read_csv('../csv_files/preprocessed_data_1504.csv')
+df = pd.read_csv('../csv_files/02_preprocessed_data/preprocessed_data.tsv', sep='\t')
 df['cleaned_title'] = df['cleaned_title'].astype(str)
 
 # Tokenize the text
@@ -61,7 +61,7 @@ for epoch in range(epochs):
         scheduler.step()
 
 # Evaluate the fine-tuned model on the test set
-test_df = pd.read_csv('../csv_files/reddit_posts_1504.csv')
+test_df = pd.read_csv('../csv_files/01_reddit_posts/reddit_posts_combined.tsv', sep='\t')
 test_df['cleaned_title'] = test_df['cleaned_title'].astype(str)
 test_inputs = torch.tensor(
     [tokenizer.encode(text, add_special_tokens=True, padding='max_length', max_length=max_len, truncation=True) for text

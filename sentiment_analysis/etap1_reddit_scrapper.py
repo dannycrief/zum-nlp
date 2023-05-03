@@ -1,3 +1,4 @@
+import re
 import praw
 import pandas as pd
 import logging
@@ -16,13 +17,15 @@ class RedditScraper:
         self.subreddits = subreddits
         self.num_posts = num_posts
 
-    def scrape(self, output_file='csv_files/reddit_posts.csv'):
+    def scrape(self, output_file):
         posts = []
         i, j = 0, 0
 
         for subreddit in self.subreddits:
             i += 1
-            for submission in self.reddit.subreddit(subreddit).top(limit=self.num_posts, time_filter='all'):
+            # for submission in self.reddit.subreddit('popular').search(query='', limit=self.num_posts):
+            for submission in self.reddit.subreddit('popular').top(limit=self.num_posts, time_filter='all'):
+            # for submission in self.reddit.subreddit(subreddit).top(limit=self.num_posts, time_filter='all'):
                 if submission.is_self:
                     posts.append({
                         'author': submission.author.name if submission.author else '',
@@ -33,10 +36,10 @@ class RedditScraper:
                         'num_comments': submission.num_comments,
                         'created': pd.to_datetime(submission.created_utc, unit='s'),
                         'subreddit': subreddit,
-                        'selftext': submission.selftext
+                        'selftext': re.sub(r'["\n\t]', ' ', submission.selftext)
                     })
                     j += 1
                     print(f"INFO: Parsed i: {i} and j: {j}")
 
         df = pd.DataFrame(posts)
-        df.to_csv(output_file, index=False)
+        df.to_csv(output_file, index=False, sep='\t')
