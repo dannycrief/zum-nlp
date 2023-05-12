@@ -29,3 +29,8 @@ Etap 2 located at sentiment_analysis/[etap2_sentiment_analysis_classic_ml.py](se
 Etap 3 located at sentiment_analysis/[etap3_sentiment_analysis_lstm_model.py](sentiment_analysis%2Fetap3_sentiment_analysis_lstm_model.py)
 ## Etap 4
 Etap 4 located at sentiment_analysis/[etap4.py](sentiment_analysis%2Fetap4.py)
+
+## Authors:
+- Stepan Kozurak: s25748@pjwstk.edu.pl
+- Maksym Miroshnychenko s26602@pjwstk.edu.pl
+
