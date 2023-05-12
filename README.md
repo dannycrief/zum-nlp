@@ -12,6 +12,15 @@ python3 -m venv venv
 source venv/bin/activate && pip install -r requirements.txt
 ```
 
+- Add your credentials to .env file
+```shell
+cat > .env << EOF
+CLIENT_ID=<client-id>
+CLIENT_SECRET=<client-secret>
+USER_AGENT=python:nlp_zum:v1.0 (by /u/dancrief)
+EOF
+```
+
 ## Etap 1
 To run first etap you should run [main.py](main.py) file
 ## Etap 2
